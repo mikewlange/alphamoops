@@ -4,7 +4,7 @@
 class MoopBoard {
 
     // privates
-    constructor (gameboard) {
+    constructor  (gameboard) {
         this.size = gameboard.length;
         this.gameboard = Object.freeze(gameboard.map(line => Object.freeze(line)));
         this.blanks = Object.freeze(this.pointsOf(MoopBoard.BLANK));
@@ -16,7 +16,7 @@ class MoopBoard {
 
 
     static newGame(size = 8) {
-        console.assert(size >= 4 && size % 2 ==  0);
+        console.assert(size >= 4 && size % 2 === 0);
         const r = size >> 1, l = r - 1;
         const gameboard = Array.from(
             Array(size), _ => Array(size).fill(MoopBoard.BLANK));
@@ -38,7 +38,7 @@ class MoopBoard {
     // state of board
     isPass(side) {
         return this.blanks.every(
-            p => this.reverses(side, p.x, p.y).length ==  0);
+            p => this.reverses(side, p.x, p.y).length === 0);
     }
     isEnd() {
         return this.blanks.length === 0 ||
