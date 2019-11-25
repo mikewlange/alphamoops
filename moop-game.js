@@ -16,18 +16,19 @@ class MoopBoard {
 
 
     static newGame(size = 8) {
-        console.assert(size >= 4 && size % 2 === 0);
+        console.assert(size >= 4 && size % 2 ==  0);
         const r = size >> 1, l = r - 1;
         const gameboard = Array.from(
             Array(size), _ => Array(size).fill(MoopBoard.BLANK));
         gameboard[l][l] = gameboard[r][r] = MoopBoard.WHITE;
         gameboard[l][r] = gameboard[r][l] = MoopBoard.BLACK;
+        consle.log(gameboard);
         return new MoopBoard(gameboard);
     }
     nextTurn(side, x, y) {
-        console.assert(this.validPlace(side, x, y));
+        console.log(this.validPlace(side, x, y));
         const reverses = this.reverses(side, x, y);
-        console.assert(reverses.length > 0);
+        console.log(reverses.length > 0);
         const newBoard = this.gameboard.map(line => line.concat());
         reverses.forEach(p => newBoard[p.y][p.x] = side);
         newBoard[y][x] = side;
@@ -37,7 +38,7 @@ class MoopBoard {
     // state of board
     isPass(side) {
         return this.blanks.every(
-            p => this.reverses(side, p.x, p.y).length === 0);
+            p => this.reverses(side, p.x, p.y).length ==  0);
     }
     isEnd() {
         return this.blanks.length === 0 ||
